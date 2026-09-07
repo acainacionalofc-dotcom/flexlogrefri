@@ -1,0 +1,1148 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FlexLog — Transporte especializado em equipamentos de refrigeração</title>
+<meta name="description" content="FlexLog é especializada no transporte de equipamentos de refrigeração, com logística eficiente, segura e planejada.">
+<link rel="icon" href="assets/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy-900:#071B33;
+    --navy-800:#0A2A4D;
+    --navy-700:#123A63;
+    --cyan-500:#17A9E0;
+    --cyan-400:#4FD1F0;
+    --ice-50:#F3F7FB;
+    --ice-100:#E8F1F8;
+    --white:#FFFFFF;
+    --gray-500:#5B6B7C;
+    --gray-300:#C7D3DD;
+    --line:#DCE6EE;
+    --radius-sm:10px;
+    --radius-md:16px;
+    --shadow-1: 0 1px 2px rgba(7,27,51,.06), 0 8px 24px rgba(7,27,51,.06);
+    --shadow-2: 0 12px 40px rgba(7,27,51,.14);
+    --ease: cubic-bezier(.22,.61,.36,1);
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:'Inter',system-ui,-apple-system,sans-serif;
+    color:var(--navy-800);
+    background:var(--white);
+    -webkit-font-smoothing:antialiased;
+    line-height:1.55;
+  }
+  h1,h2,h3,h4{
+    font-family:'Space Grotesk',system-ui,sans-serif;
+    color:var(--navy-900);
+    line-height:1.15;
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+  p{margin:0;}
+  a{color:inherit;text-decoration:none;}
+  ul{margin:0;padding:0;list-style:none;}
+  img{max-width:100%;display:block;}
+  button{font-family:inherit;cursor:pointer;border:none;background:none;}
+  input,textarea{font-family:inherit;font-size:1rem;}
+  section{position:relative;}
+
+  .wrap{
+    max-width:1200px;
+    margin:0 auto;
+    padding:0 32px;
+  }
+  @media (max-width:640px){ .wrap{padding:0 20px;} }
+
+  :focus-visible{
+    outline:2px solid var(--cyan-500);
+    outline-offset:3px;
+    border-radius:4px;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; scroll-behavior:auto !important;}
+  }
+
+  /* ---------- Buttons ---------- */
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    padding:14px 26px;
+    border-radius:999px;
+    font-weight:600;
+    font-size:.95rem;
+    transition:transform .25s var(--ease), box-shadow .25s var(--ease), background .25s var(--ease);
+    white-space:nowrap;
+  }
+  .btn-primary{
+    background:linear-gradient(135deg, var(--cyan-500), var(--navy-700) 130%);
+    color:var(--white);
+    box-shadow:0 8px 20px rgba(23,169,224,.28);
+  }
+  .btn-primary:hover{ transform:translateY(-2px); box-shadow:0 12px 26px rgba(23,169,224,.36); }
+  .btn-ghost{
+    background:transparent;
+    color:var(--navy-800);
+    border:1.5px solid var(--line);
+  }
+  .btn-ghost:hover{ border-color:var(--cyan-500); color:var(--cyan-500); transform:translateY(-2px);}
+  .btn[disabled]{ opacity:.75; cursor:default; transform:none !important; }
+
+  /* ---------- Header ---------- */
+  header.site{
+    position:fixed;
+    top:0; left:0; right:0;
+    z-index:100;
+    background:rgba(255,255,255,.86);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    height:78px;
+  }
+  .brand{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-family:'Space Grotesk';
+    font-weight:700;
+    font-size:1.35rem;
+    color:var(--navy-900);
+  }
+  .brand img{height:34px;width:auto;}
+  nav.links{
+    display:flex;
+    align-items:center;
+    gap:34px;
+  }
+  nav.links a{
+    font-size:.95rem;
+    font-weight:500;
+    color:var(--navy-700);
+    position:relative;
+    padding:6px 0;
+    transition:color .2s;
+  }
+  nav.links a::after{
+    content:'';
+    position:absolute;
+    left:0; right:0; bottom:0;
+    height:2px;
+    background:var(--cyan-500);
+    transform:scaleX(0);
+    transform-origin:left;
+    transition:transform .25s var(--ease);
+  }
+  nav.links a:hover{color:var(--navy-900);}
+  nav.links a:hover::after{transform:scaleX(1);}
+  .nav-cta{display:flex;align-items:center;gap:18px;}
+  .nav-cta .btn{padding:11px 22px;font-size:.9rem;}
+
+  .hamburger{
+    display:none;
+    width:40px;height:40px;
+    align-items:center;justify-content:center;
+    border-radius:8px;
+  }
+  .hamburger span, .hamburger::before, .hamburger::after{
+    content:'';
+    display:block;
+    width:22px;height:2px;
+    background:var(--navy-900);
+    position:relative;
+    transition:transform .25s var(--ease), opacity .2s;
+  }
+  .hamburger::before{ position:absolute; transform:translateY(-7px);}
+  .hamburger::after{ position:absolute; transform:translateY(7px);}
+  .hamburger.open span{opacity:0;}
+  .hamburger.open::before{transform:rotate(45deg);}
+  .hamburger.open::after{transform:rotate(-45deg);}
+
+  .mobile-panel{
+    display:none;
+    position:fixed;
+    top:78px; left:0; right:0;
+    background:var(--white);
+    border-bottom:1px solid var(--line);
+    box-shadow:var(--shadow-2);
+    padding:14px 20px 24px;
+    z-index:99;
+  }
+  .mobile-panel.open{display:block;}
+  .mobile-panel a{
+    display:block;
+    padding:13px 4px;
+    font-weight:500;
+    border-bottom:1px solid var(--ice-100);
+    color:var(--navy-800);
+  }
+  .mobile-panel .btn{width:100%;margin-top:14px;}
+
+  @media (max-width:900px){
+    nav.links{display:none;}
+    .nav-cta .btn-ghost{display:none;}
+    .hamburger{display:flex;}
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    padding:168px 0 100px;
+    background:
+      radial-gradient(1100px 520px at 82% -10%, rgba(23,169,224,.14), transparent 60%),
+      linear-gradient(180deg, var(--ice-50) 0%, var(--white) 78%);
+    overflow:hidden;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.05fr .95fr;
+    gap:56px;
+    align-items:center;
+  }
+  .hero-eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-size:.85rem;
+    font-weight:600;
+    color:var(--cyan-500);
+    background:rgba(23,169,224,.1);
+    padding:7px 16px 7px 12px;
+    border-radius:999px;
+    margin-bottom:22px;
+  }
+  .hero-eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--cyan-500);}
+  .hero h1{
+    font-size:clamp(2.3rem, 4vw, 3.4rem);
+    font-weight:700;
+    max-width:12ch;
+  }
+  .hero p.lead{
+    margin-top:22px;
+    font-size:1.15rem;
+    color:var(--gray-500);
+    max-width:46ch;
+  }
+  .hero-actions{
+    display:flex;
+    gap:16px;
+    margin-top:36px;
+    flex-wrap:wrap;
+  }
+  .hero-stats{
+    display:flex;
+    gap:34px;
+    margin-top:52px;
+    padding-top:32px;
+    border-top:1px solid var(--line);
+  }
+  .hero-stats div strong{
+    display:block;
+    font-family:'Space Grotesk';
+    font-size:1.05rem;
+    color:var(--navy-900);
+  }
+  .hero-stats div span{font-size:.85rem;color:var(--gray-500);}
+
+  .hero-art{ position:relative; }
+  .hero-art svg{ width:100%; height:auto; }
+  .float-chip{
+    position:absolute;
+    background:var(--white);
+    border:1px solid var(--line);
+    border-radius:14px;
+    box-shadow:var(--shadow-2);
+    padding:12px 16px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size:.82rem;
+    font-weight:600;
+    color:var(--navy-800);
+    animation:drift 6s ease-in-out infinite;
+  }
+  .float-chip.chip-1{ top:6%; left:-4%; animation-delay:0s;}
+  .float-chip.chip-2{ bottom:10%; right:-2%; animation-delay:1.2s;}
+  .float-chip .chip-dot{width:8px;height:8px;border-radius:50%;background:var(--cyan-500);}
+  @keyframes drift{
+    0%,100%{ transform:translateY(0);}
+    50%{ transform:translateY(-10px);}
+  }
+  @media (max-width:900px){
+    .hero{padding:140px 0 64px;}
+    .hero-grid{grid-template-columns:1fr; gap:52px;}
+    .hero h1{max-width:none;}
+    .float-chip{display:none;}
+  }
+
+  /* ---------- Section headers ---------- */
+  .section-head{
+    max-width:640px;
+    margin-bottom:52px;
+  }
+  .section-head h2{
+    font-size:clamp(1.9rem, 3vw, 2.5rem);
+  }
+  .section-head p{
+    margin-top:16px;
+    font-size:1.05rem;
+    color:var(--gray-500);
+  }
+  .section-pad{ padding:104px 0; }
+  @media (max-width:640px){ .section-pad{padding:72px 0;} }
+  .bg-ice{ background:var(--ice-50); }
+
+  /* ---------- About ---------- */
+  .about-grid{
+    display:grid;
+    grid-template-columns:.9fr 1.1fr;
+    gap:70px;
+    align-items:start;
+  }
+  .about-copy p{
+    font-size:1.08rem;
+    color:var(--gray-500);
+  }
+  .about-copy .stamp{
+    margin-top:34px;
+    display:inline-flex;
+    align-items:center;
+    gap:12px;
+    font-family:'Space Grotesk';
+    font-weight:600;
+    color:var(--navy-900);
+    font-size:1.02rem;
+  }
+  .about-copy .stamp svg{width:30px;height:30px;flex:none;}
+
+  .cards-2col{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+  }
+  .info-card{
+    padding:28px 24px;
+    border-radius:var(--radius-md);
+    background:var(--white);
+    border:1px solid var(--line);
+    transition:border-color .25s, transform .25s var(--ease), box-shadow .25s var(--ease);
+  }
+  .info-card:hover{ border-color:transparent; box-shadow:var(--shadow-1); transform:translateY(-4px); }
+  .info-card .ic{
+    width:44px;height:44px;
+    border-radius:12px;
+    background:var(--ice-100);
+    display:flex;align-items:center;justify-content:center;
+    margin-bottom:16px;
+  }
+  .info-card .ic svg{width:22px;height:22px;color:var(--cyan-500);}
+  .info-card h3{font-size:1.08rem;margin-bottom:8px;}
+  .info-card p{font-size:.93rem;color:var(--gray-500);}
+
+  @media (max-width:900px){
+    .about-grid{grid-template-columns:1fr;gap:40px;}
+    .cards-2col{grid-template-columns:1fr 1fr;}
+  }
+  @media (max-width:520px){ .cards-2col{grid-template-columns:1fr;} }
+
+  /* ---------- Services ---------- */
+  .services-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+    border-radius:var(--radius-md);
+    overflow:hidden;
+  }
+  .service-cell{
+    background:var(--white);
+    padding:34px 26px;
+    transition:background .25s;
+  }
+  .service-cell:hover{ background:var(--ice-50); }
+  .service-cell .num{
+    font-family:'Space Grotesk';
+    font-size:.85rem;
+    color:var(--cyan-500);
+    font-weight:600;
+  }
+  .service-cell h3{
+    margin-top:14px;
+    font-size:1.08rem;
+  }
+  .service-cell p{
+    margin-top:10px;
+    font-size:.92rem;
+    color:var(--gray-500);
+  }
+  @media (max-width:900px){ .services-grid{grid-template-columns:1fr 1fr;} }
+  @media (max-width:560px){ .services-grid{grid-template-columns:1fr;} }
+
+  /* ---------- Tracking ---------- */
+  .tracking-section{
+    background:var(--navy-900);
+    color:var(--white);
+    padding:110px 0 120px;
+    position:relative;
+    overflow:hidden;
+  }
+  .tracking-section::before{
+    content:'';
+    position:absolute;
+    inset:0;
+    background:
+      radial-gradient(700px 400px at 12% 10%, rgba(23,169,224,.22), transparent 60%),
+      radial-gradient(800px 500px at 90% 90%, rgba(79,209,240,.14), transparent 60%);
+    pointer-events:none;
+  }
+  .tracking-section .wrap{ position:relative; z-index:1; }
+  .tracking-head{
+    text-align:center;
+    max-width:600px;
+    margin:0 auto 44px;
+  }
+  .tracking-head h2{ color:var(--white); font-size:clamp(1.9rem,3vw,2.5rem); }
+  .tracking-head p{ margin-top:14px; color:#B9C9D8; font-size:1.05rem; }
+
+  .track-form{
+    max-width:620px;
+    margin:0 auto;
+    display:flex;
+    gap:12px;
+    background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.14);
+    padding:8px;
+    border-radius:16px;
+  }
+  .track-form input{
+    flex:1;
+    background:transparent;
+    border:none;
+    color:var(--white);
+    padding:14px 16px;
+    font-size:1rem;
+    letter-spacing:.03em;
+  }
+  .track-form input::placeholder{ color:#7C93A8; }
+  .track-form input:focus{ outline:none; }
+  .track-form .btn-primary{ flex:none; min-width:180px; }
+  @media (max-width:560px){
+    .track-form{ flex-direction:column; border-radius:18px; }
+    .track-form .btn-primary{ min-width:0; }
+  }
+
+  .track-error{
+    max-width:620px;
+    margin:16px auto 0;
+    padding:14px 18px;
+    background:rgba(255,90,90,.12);
+    border:1px solid rgba(255,120,120,.35);
+    border-radius:12px;
+    color:#FFD2D2;
+    font-size:.92rem;
+    display:none;
+    align-items:center;
+    gap:10px;
+  }
+  .track-error.show{ display:flex; animation:fadeIn .3s var(--ease); }
+
+  .track-result{
+    max-width:920px;
+    margin:56px auto 0;
+    background:var(--white);
+    color:var(--navy-800);
+    border-radius:var(--radius-md);
+    padding:40px;
+    box-shadow:var(--shadow-2);
+    display:none;
+  }
+  .track-result.show{ display:block; animation:fadeUp .5s var(--ease); }
+  @keyframes fadeUp{ from{opacity:0; transform:translateY(18px);} to{opacity:1; transform:translateY(0);} }
+  @keyframes fadeIn{ from{opacity:0;} to{opacity:1;} }
+
+  .track-meta{
+    display:flex;
+    flex-wrap:wrap;
+    gap:28px;
+    justify-content:space-between;
+    padding-bottom:28px;
+    border-bottom:1px solid var(--line);
+    margin-bottom:32px;
+  }
+  .track-meta .item span.label{
+    display:block;
+    font-size:.78rem;
+    color:var(--gray-500);
+    margin-bottom:5px;
+  }
+  .track-meta .item span.value{
+    font-family:'Space Grotesk';
+    font-weight:600;
+    font-size:1.02rem;
+    color:var(--navy-900);
+  }
+  .status-pill{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background:rgba(23,169,224,.12);
+    color:var(--cyan-500);
+    padding:6px 14px;
+    border-radius:999px;
+    font-weight:600;
+    font-size:.88rem;
+  }
+  .status-pill .p-dot{width:7px;height:7px;border-radius:50%;background:var(--cyan-500); animation:pulse 1.6s infinite;}
+  @keyframes pulse{ 0%,100%{opacity:1;} 50%{opacity:.3;} }
+
+  .route-strip{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:8px;
+    margin-bottom:36px;
+  }
+  .route-node{ text-align:center; flex:1; }
+  .route-node .rn-label{ font-size:.75rem; color:var(--gray-500); margin-bottom:6px; }
+  .route-node .rn-value{ font-family:'Space Grotesk'; font-weight:600; font-size:.95rem; color:var(--navy-900); }
+  .route-arrow{ color:var(--gray-300); font-size:1.1rem; flex:none; }
+
+  .timeline{
+    display:flex;
+    flex-direction:column;
+    gap:0;
+  }
+  .tl-step{
+    display:flex;
+    gap:18px;
+    padding-bottom:26px;
+    position:relative;
+  }
+  .tl-step:last-child{ padding-bottom:0; }
+  .tl-marker{
+    flex:none;
+    width:26px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+  }
+  .tl-marker .circle{
+    width:14px;height:14px;
+    border-radius:50%;
+    background:var(--gray-300);
+    border:3px solid var(--white);
+    box-shadow:0 0 0 1.5px var(--gray-300);
+    flex:none;
+    margin-top:2px;
+  }
+  .tl-step.active .tl-marker .circle{
+    background:var(--cyan-500);
+    box-shadow:0 0 0 1.5px var(--cyan-500), 0 0 0 5px rgba(23,169,224,.18);
+  }
+  .tl-marker .bar{
+    width:2px;
+    flex:1;
+    background:var(--line);
+    margin-top:4px;
+  }
+  .tl-step.active .tl-marker .bar{ background:linear-gradient(var(--cyan-500), var(--line)); }
+  .tl-content h4{ font-size:.98rem; color:var(--navy-900); }
+  .tl-step:not(.active) .tl-content h4{ color:var(--gray-500); font-weight:500; }
+  .tl-content p{ font-size:.86rem; color:var(--gray-500); margin-top:4px; }
+
+  /* ---------- Advantages ---------- */
+  .adv-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:26px;
+  }
+  .adv-item{ padding-top:2px; }
+  .adv-item .line{
+    height:2px; width:36px;
+    background:var(--cyan-500);
+    margin-bottom:20px;
+  }
+  .adv-item h3{ font-size:1.12rem; margin-bottom:10px; }
+  .adv-item p{ font-size:.94rem; color:var(--gray-500); }
+  @media (max-width:900px){ .adv-grid{grid-template-columns:1fr 1fr; row-gap:36px;} }
+  @media (max-width:560px){ .adv-grid{grid-template-columns:1fr;} }
+
+  /* ---------- Process ---------- */
+  .process-track{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:0;
+    position:relative;
+  }
+  .process-track::before{
+    content:'';
+    position:absolute;
+    top:23px; left:6%; right:6%;
+    height:2px;
+    background:var(--line);
+  }
+  .proc-step{ text-align:left; padding-right:20px; position:relative; }
+  .proc-step .p-num{
+    width:46px;height:46px;
+    border-radius:50%;
+    background:var(--white);
+    border:2px solid var(--cyan-500);
+    color:var(--navy-900);
+    font-family:'Space Grotesk';
+    font-weight:700;
+    display:flex;align-items:center;justify-content:center;
+    position:relative; z-index:1;
+    margin-bottom:22px;
+  }
+  .proc-step h3{ font-size:1.04rem; margin-bottom:8px; }
+  .proc-step p{ font-size:.9rem; color:var(--gray-500); }
+  @media (max-width:900px){
+    .process-track{grid-template-columns:1fr 1fr; row-gap:44px;}
+    .process-track::before{display:none;}
+  }
+  @media (max-width:560px){ .process-track{grid-template-columns:1fr;} }
+
+  /* ---------- Contact ---------- */
+  .contact-grid{
+    display:grid;
+    grid-template-columns:.85fr 1.15fr;
+    gap:64px;
+  }
+  .contact-copy p{ color:var(--gray-500); font-size:1.05rem; margin-top:16px; max-width:38ch; }
+  .contact-copy .note{
+    margin-top:40px;
+    padding:20px 22px;
+    border-left:3px solid var(--cyan-500);
+    background:var(--ice-50);
+    border-radius:0 12px 12px 0;
+    font-size:.9rem;
+    color:var(--gray-500);
+  }
+  form.contact-form{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:18px;
+  }
+  form.contact-form .full{ grid-column:1 / -1; }
+  .field label{
+    display:block;
+    font-size:.85rem;
+    font-weight:600;
+    color:var(--navy-800);
+    margin-bottom:8px;
+  }
+  .field input, .field textarea{
+    width:100%;
+    padding:13px 14px;
+    border:1.5px solid var(--line);
+    border-radius:10px;
+    background:var(--white);
+    color:var(--navy-800);
+    transition:border-color .2s;
+  }
+  .field input:focus, .field textarea:focus{
+    outline:none;
+    border-color:var(--cyan-500);
+  }
+  .field textarea{ resize:vertical; min-height:120px; }
+  form.contact-form .btn{ width:100%; margin-top:4px; }
+  .form-success{
+    display:none;
+    align-items:center;
+    gap:10px;
+    margin-top:16px;
+    padding:14px 16px;
+    background:rgba(23,169,224,.1);
+    border:1px solid rgba(23,169,224,.3);
+    border-radius:10px;
+    color:var(--navy-800);
+    font-size:.92rem;
+    font-weight:500;
+  }
+  .form-success.show{ display:flex; animation:fadeIn .3s var(--ease); }
+  @media (max-width:900px){
+    .contact-grid{grid-template-columns:1fr; gap:40px;}
+    form.contact-form{grid-template-columns:1fr;}
+  }
+
+  /* ---------- Footer ---------- */
+  footer.site{
+    background:var(--navy-900);
+    color:#AFC1D2;
+    padding:64px 0 28px;
+  }
+  .footer-top{
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:40px;
+    padding-bottom:40px;
+    border-bottom:1px solid rgba(255,255,255,.1);
+  }
+  .footer-brand{ max-width:320px; }
+  .footer-brand .brand{ color:var(--white); }
+  .footer-brand p{ margin-top:14px; font-size:.92rem; color:#8FA3B8; }
+  .footer-links h4{
+    color:var(--white);
+    font-size:.85rem;
+    font-weight:600;
+    margin-bottom:16px;
+  }
+  .footer-links ul li{ margin-bottom:10px; }
+  .footer-links a{ font-size:.92rem; color:#AFC1D2; transition:color .2s; }
+  .footer-links a:hover{ color:var(--cyan-400); }
+  .footer-bottom{
+    padding-top:26px;
+    font-size:.84rem;
+    color:#7891A6;
+    text-align:center;
+  }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap nav-inner">
+    <a href="#top" class="brand"><img src="assets/logo.png" alt="FlexLog"> FlexLog</a>
+    <nav class="links">
+      <a href="#top">Início</a>
+      <a href="#sobre">Sobre nós</a>
+      <a href="#servicos">Serviços</a>
+      <a href="#rastreamento">Rastreamento</a>
+      <a href="#diferenciais">Diferenciais</a>
+      <a href="#contato">Contato</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="#contato" class="btn btn-ghost">Fale conosco</a>
+      <a href="#rastreamento" class="btn btn-primary">Rastrear encomenda</a>
+      <button class="hamburger" id="hamburger" aria-label="Abrir menu" aria-expanded="false"><span></span></button>
+    </div>
+  </div>
+  <div class="mobile-panel" id="mobilePanel">
+    <a href="#top">Início</a>
+    <a href="#sobre">Sobre nós</a>
+    <a href="#servicos">Serviços</a>
+    <a href="#rastreamento">Rastreamento</a>
+    <a href="#diferenciais">Diferenciais</a>
+    <a href="#contato">Contato</a>
+    <a href="#rastreamento" class="btn btn-primary">Rastrear encomenda</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="hero-eyebrow"><span class="dot"></span>Especialistas em carga refrigerada</span>
+        <h1>Transporte especializado em equipamentos de refrigeração</h1>
+        <p class="lead">Logística eficiente, segurança e compromisso em cada entrega.</p>
+        <div class="hero-actions">
+          <a href="#rastreamento" class="btn btn-primary">Rastrear encomenda</a>
+          <a href="#sobre" class="btn btn-ghost">Conheça a FlexLog</a>
+        </div>
+        <div class="hero-stats">
+          <div><strong>Rota planejada</strong><span>ponto a ponto</span></div>
+          <div><strong>Carga refrigerada</strong><span>manuseio especializado</span></div>
+          <div><strong>Acompanhamento</strong><span>em tempo real</span></div>
+        </div>
+      </div>
+
+      <div class="hero-art">
+        <div class="float-chip chip-1"><span class="chip-dot"></span>Nota fiscal em emissão</div>
+        <div class="float-chip chip-2"><span class="chip-dot"></span>Origem: Vila Liviero, SP</div>
+        <svg viewBox="0 0 560 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="gTruck" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#0A2A4D"/>
+              <stop offset="1" stop-color="#123A63"/>
+            </linearGradient>
+            <linearGradient id="gRoute" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0" stop-color="#17A9E0" stop-opacity="0"/>
+              <stop offset="1" stop-color="#17A9E0"/>
+            </linearGradient>
+          </defs>
+
+          <path d="M20 360 C 140 360, 160 300, 280 300 S 420 260, 540 260" stroke="url(#gRoute)" stroke-width="3" stroke-dasharray="2 12" stroke-linecap="round"/>
+          <circle cx="540" cy="260" r="6" fill="#17A9E0"/>
+          <circle cx="20" cy="360" r="5" fill="#0A2A4D"/>
+
+          <!-- container -->
+          <rect x="60" y="150" width="230" height="140" rx="10" fill="url(#gTruck)"/>
+          <rect x="76" y="166" width="198" height="108" rx="4" fill="none" stroke="#4FD1F0" stroke-width="1.5" opacity=".5"/>
+          <g stroke="#17A9E0" stroke-width="4" stroke-linecap="round">
+            <path d="M175 195 v54 M155 202 l40 40 M195 202 l-40 40"/>
+            <path d="M150 220 h50 M165 200 l0 40 l0 0"/>
+          </g>
+          <path d="M175 190 l7 12 h-14 z M175 254 l7 -12 h-14 z M148 222 l12 -7 v14 z M202 222 l-12 -7 v14 z" fill="#4FD1F0"/>
+
+          <!-- cab -->
+          <path d="M290 190 h60 c20 0 32 12 44 34 l20 36 v30 h-124 z" fill="url(#gTruck)"/>
+          <rect x="308" y="206" width="46" height="38" rx="6" fill="#EAF6FC"/>
+          <rect x="360" y="222" width="30" height="26" rx="5" fill="#0E3D68"/>
+
+          <!-- chassis -->
+          <rect x="60" y="290" width="354" height="14" rx="4" fill="#0A2A4D"/>
+          <circle cx="130" cy="322" r="26" fill="#0A2A4D"/>
+          <circle cx="130" cy="322" r="11" fill="#B9D6E8"/>
+          <circle cx="350" cy="322" r="26" fill="#0A2A4D"/>
+          <circle cx="350" cy="322" r="11" fill="#B9D6E8"/>
+
+          <!-- speed lines -->
+          <g stroke="#4FD1F0" stroke-width="4" stroke-linecap="round" opacity=".7">
+            <path d="M420 195 h60"/>
+            <path d="M425 215 h48"/>
+            <path d="M418 235 h34"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOBRE -->
+  <section class="section-pad" id="sobre">
+    <div class="wrap about-grid">
+      <div class="about-copy">
+        <h2 style="font-size:clamp(1.9rem,3vw,2.5rem);">Logística que conecta negócios</h2>
+        <p style="margin-top:20px;">A FlexLog é especializada no transporte de equipamentos de refrigeração, oferecendo soluções logísticas eficientes, seguras e planejadas para empresas que precisam movimentar seus equipamentos com confiança e agilidade.</p>
+        <span class="stamp">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#17A9E0" stroke-width="2"><path d="M12 2 L14 8 L20 8 L15 12 L17 18 L12 14.5 L7 18 L9 12 L4 8 L10 8 Z"/></svg>
+          Transporte de refrigeração, do jeito certo
+        </span>
+      </div>
+
+      <div class="cards-2col">
+        <div class="info-card">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3 L4 6 v6 c0 5 4 8 8 9 c4-1 8-4 8-9 V6 Z"/></svg></div>
+          <h3>Segurança</h3>
+          <p>Transporte planejado para garantir a integridade dos equipamentos.</p>
+        </div>
+        <div class="info-card">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2 L4 14 h6 l-1 8 9-12 h-6 Z"/></svg></div>
+          <h3>Agilidade</h3>
+          <p>Operações eficientes para otimizar prazos e entregas.</p>
+        </div>
+        <div class="info-card">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 L14 8 L20 8 L15 12 L17 18 L12 14.5 L7 18 L9 12 L4 8 L10 8 Z"/></svg></div>
+          <h3>Especialização</h3>
+          <p>Experiência direcionada ao transporte de equipamentos de refrigeração.</p>
+        </div>
+        <div class="info-card">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8 12 l3 3 l5-6"/></svg></div>
+          <h3>Confiabilidade</h3>
+          <p>Compromisso com cada etapa da operação logística.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVIÇOS -->
+  <section class="section-pad bg-ice" id="servicos">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Nossas soluções</h2>
+        <p>Serviços pensados para cada etapa do transporte de equipamentos de refrigeração.</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-cell">
+          <span class="num">01</span>
+          <h3>Transporte de equipamentos</h3>
+          <p>Transporte especializado para equipamentos e soluções de refrigeração.</p>
+        </div>
+        <div class="service-cell">
+          <span class="num">02</span>
+          <h3>Logística dedicada</h3>
+          <p>Operações planejadas de acordo com as necessidades de cada cliente.</p>
+        </div>
+        <div class="service-cell">
+          <span class="num">03</span>
+          <h3>Coletas e entregas</h3>
+          <p>Processos organizados para garantir maior eficiência logística.</p>
+        </div>
+        <div class="service-cell">
+          <span class="num">04</span>
+          <h3>Transporte especializado</h3>
+          <p>Movimentação segura de equipamentos que exigem atenção e cuidado.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RASTREAMENTO -->
+  <section class="tracking-section" id="rastreamento">
+    <div class="wrap">
+      <div class="tracking-head">
+        <h2>Rastreie sua encomenda</h2>
+        <p>Acompanhe sua entrega em poucos segundos.</p>
+      </div>
+
+      <form class="track-form" id="trackForm">
+        <input type="text" id="trackInput" placeholder="Digite seu código de rastreio" aria-label="Código de rastreio" autocomplete="off">
+        <button type="submit" class="btn btn-primary" id="trackBtn">Rastrear encomenda</button>
+      </form>
+
+      <div class="track-error" id="trackError">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex:none;"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg>
+        <span>Código de rastreio não encontrado. Verifique o código informado e tente novamente.</span>
+      </div>
+
+      <div class="track-result" id="trackResult">
+        <div class="track-meta">
+          <div class="item">
+            <span class="label">Código de rastreio</span>
+            <span class="value">BR35318887</span>
+          </div>
+          <div class="item">
+            <span class="label">Transportadora</span>
+            <span class="value">FlexLog</span>
+          </div>
+          <div class="item">
+            <span class="label">Status atual</span>
+            <span class="status-pill"><span class="p-dot"></span>Emitindo a nota fiscal</span>
+          </div>
+        </div>
+
+        <div class="route-strip">
+          <div class="route-node">
+            <div class="rn-label">Origem</div>
+            <div class="rn-value">Vila Liviero, São Paulo — SP</div>
+          </div>
+          <div class="route-arrow">→</div>
+          <div class="route-node">
+            <div class="rn-label">Status atual</div>
+            <div class="rn-value">Emitindo a nota fiscal</div>
+          </div>
+          <div class="route-arrow">→</div>
+          <div class="route-node">
+            <div class="rn-label">Destino</div>
+            <div class="rn-value">Em rota de definição</div>
+          </div>
+        </div>
+
+        <div class="timeline">
+          <div class="tl-step active">
+            <div class="tl-marker"><div class="circle"></div><div class="bar"></div></div>
+            <div class="tl-content"><h4>Emitindo a nota fiscal</h4><p>Pedido em processo de emissão da nota fiscal.</p></div>
+          </div>
+          <div class="tl-step">
+            <div class="tl-marker"><div class="circle"></div><div class="bar"></div></div>
+            <div class="tl-content"><h4>Nota fiscal emitida</h4><p>Aguardando emissão da documentação fiscal.</p></div>
+          </div>
+          <div class="tl-step">
+            <div class="tl-marker"><div class="circle"></div><div class="bar"></div></div>
+            <div class="tl-content"><h4>Equipamento coletado</h4><p>Aguardando coleta do equipamento.</p></div>
+          </div>
+          <div class="tl-step">
+            <div class="tl-marker"><div class="circle"></div><div class="bar"></div></div>
+            <div class="tl-content"><h4>Em transporte</h4><p>O equipamento será encaminhado para transporte.</p></div>
+          </div>
+          <div class="tl-step">
+            <div class="tl-marker"><div class="circle"></div><div class="bar"></div></div>
+            <div class="tl-content"><h4>Em rota de entrega</h4><p>O equipamento estará a caminho do destino.</p></div>
+          </div>
+          <div class="tl-step">
+            <div class="tl-marker"><div class="circle"></div></div>
+            <div class="tl-content"><h4>Entregue</h4><p>Entrega concluída.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DIFERENCIAIS -->
+  <section class="section-pad" id="diferenciais">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Por que escolher a FlexLog?</h2>
+      </div>
+      <div class="adv-grid">
+        <div class="adv-item">
+          <div class="line"></div>
+          <h3>Segurança</h3>
+          <p>Cuidado em cada etapa do transporte.</p>
+        </div>
+        <div class="adv-item">
+          <div class="line"></div>
+          <h3>Eficiência</h3>
+          <p>Processos planejados para maior agilidade.</p>
+        </div>
+        <div class="adv-item">
+          <div class="line"></div>
+          <h3>Tecnologia</h3>
+          <p>Acompanhamento e organização logística.</p>
+        </div>
+        <div class="adv-item">
+          <div class="line"></div>
+          <h3>Compromisso</h3>
+          <p>Responsabilidade com cada equipamento transportado.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESSO -->
+  <section class="section-pad bg-ice">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Do ponto de origem ao destino</h2>
+      </div>
+      <div class="process-track">
+        <div class="proc-step">
+          <div class="p-num">01</div>
+          <h3>Emissão da nota fiscal</h3>
+          <p>Documentação preparada antes de qualquer movimentação.</p>
+        </div>
+        <div class="proc-step">
+          <div class="p-num">02</div>
+          <h3>Coleta</h3>
+          <p>Retirada do equipamento no ponto de origem.</p>
+        </div>
+        <div class="proc-step">
+          <div class="p-num">03</div>
+          <h3>Transporte</h3>
+          <p>Deslocamento planejado até o destino.</p>
+        </div>
+        <div class="proc-step">
+          <div class="p-num">04</div>
+          <h3>Entrega</h3>
+          <p>Equipamento entregue com segurança.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTATO -->
+  <section class="section-pad" id="contato">
+    <div class="wrap contact-grid">
+      <div class="contact-copy">
+        <h2 style="font-size:clamp(1.9rem,3vw,2.5rem);">Fale com a FlexLog</h2>
+        <p>Precisa transportar equipamentos de refrigeração? Entre em contato com nossa equipe.</p>
+        <div class="note">Responderemos com as informações necessárias para planejar sua operação de transporte.</div>
+      </div>
+
+      <div>
+        <form class="contact-form" id="contactForm">
+          <div class="field"><label for="cName">Nome</label><input id="cName" type="text" required></div>
+          <div class="field"><label for="cCompany">Empresa</label><input id="cCompany" type="text"></div>
+          <div class="field"><label for="cEmail">E-mail</label><input id="cEmail" type="email" required></div>
+          <div class="field"><label for="cPhone">Telefone</label><input id="cPhone" type="tel"></div>
+          <div class="field full"><label for="cMessage">Mensagem</label><textarea id="cMessage" required></textarea></div>
+          <div class="full">
+            <button type="submit" class="btn btn-primary" id="contactBtn">Enviar mensagem</button>
+            <div class="form-success" id="formSuccess">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8 12 l3 3 l5-6"/></svg>
+              Mensagem enviada com sucesso!
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <span class="brand"><img src="assets/logo.png" alt="FlexLog"> FlexLog</span>
+        <p>Transporte de equipamentos de refrigeração.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Navegação</h4>
+        <ul>
+          <li><a href="#top">Início</a></li>
+          <li><a href="#sobre">Sobre nós</a></li>
+          <li><a href="#servicos">Serviços</a></li>
+          <li><a href="#rastreamento">Rastreamento</a></li>
+          <li><a href="#contato">Contato</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2026 FlexLog. Todos os direitos reservados.</div>
+  </div>
+</footer>
+
+<script>
+  // Mobile menu
+  const hamburger = document.getElementById('hamburger');
+  const mobilePanel = document.getElementById('mobilePanel');
+  hamburger.addEventListener('click', () => {
+    const open = mobilePanel.classList.toggle('open');
+    hamburger.classList.toggle('open', open);
+    hamburger.setAttribute('aria-expanded', open);
+  });
+  mobilePanel.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    mobilePanel.classList.remove('open');
+    hamburger.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', false);
+  }));
+
+  // Header shadow on scroll
+  const header = document.querySelector('header.site');
+  window.addEventListener('scroll', () => {
+    header.style.boxShadow = window.scrollY > 8 ? '0 4px 20px rgba(7,27,51,.08)' : 'none';
+  });
+
+  // ---- Tracking logic ----
+  const VALID_CODE = 'BR35318887';
+  const trackForm = document.getElementById('trackForm');
+  const trackInput = document.getElementById('trackInput');
+  const trackBtn = document.getElementById('trackBtn');
+  const trackError = document.getElementById('trackError');
+  const trackResult = document.getElementById('trackResult');
+
+  trackForm.addEventListener('submit', function(e){
+    e.preventDefault();
+    const code = trackInput.value.trim().toUpperCase();
+
+    trackError.classList.remove('show');
+    trackResult.classList.remove('show');
+
+    if (!code) return;
+
+    const originalLabel = trackBtn.textContent;
+    trackBtn.disabled = true;
+    trackBtn.textContent = 'Rastreando...';
+
+    setTimeout(() => {
+      trackBtn.disabled = false;
+      trackBtn.textContent = originalLabel;
+
+      if (code === VALID_CODE) {
+        trackResult.classList.add('show');
+        trackResult.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      } else {
+        trackError.classList.add('show');
+        trackError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    }, 1000);
+  });
+
+  // ---- Contact form (simulated) ----
+  const contactForm = document.getElementById('contactForm');
+  const formSuccess = document.getElementById('formSuccess');
+  contactForm.addEventListener('submit', function(e){
+    e.preventDefault();
+    formSuccess.classList.add('show');
+    contactForm.reset();
+    setTimeout(() => formSuccess.classList.remove('show'), 5000);
+  });
+</script>
+
+</body>
+</html>
