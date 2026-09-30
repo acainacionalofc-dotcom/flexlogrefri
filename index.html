@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>FlexLog — Transporte especializado em equipamentos de refrigeração</title>
+<meta name="theme-color" content="#071B33">
 <meta name="description" content="FlexLog é especializada no transporte de equipamentos de refrigeração, com logística eficiente, segura e planejada.">
 <link rel="icon" href="assets/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -710,6 +711,119 @@
     color:#7891A6;
     text-align:center;
   }
+
+  /* ================= MODERN LAYER ================= */
+  :root{
+    --radius-md:20px;
+    --shadow-1:0 1px 2px rgba(7,27,51,.05),0 14px 36px -12px rgba(7,27,51,.14);
+    --shadow-2:0 30px 60px -20px rgba(7,27,51,.28);
+  }
+  body{font-size:16.5px;}
+  h1,h2,h3{letter-spacing:-0.025em;}
+  .btn{padding:15px 28px;letter-spacing:.005em;}
+  .btn-primary{background:var(--cyan-500);box-shadow:0 10px 24px -8px rgba(23,169,224,.55);}
+  .btn-primary:hover{background:#1FB6EE;box-shadow:0 16px 30px -10px rgba(23,169,224,.65);}
+
+  header.site{background:rgba(255,255,255,.78);backdrop-filter:saturate(1.4) blur(16px);-webkit-backdrop-filter:saturate(1.4) blur(16px);}
+  .nav-inner{height:74px;}
+  nav.links a{color:var(--gray-500);}
+  nav.links a:hover{color:var(--navy-900);}
+  .nav-cta .btn-ghost{background:var(--navy-900);color:var(--white);border-color:var(--navy-900);}
+  .nav-cta .btn-ghost:hover{background:var(--navy-700);border-color:var(--navy-700);color:var(--white);}
+  .mobile-panel{top:74px;}
+
+  /* Hero escuro */
+  .hero{
+    padding:160px 0 110px;
+    background:
+      radial-gradient(900px 500px at 85% 0%, rgba(23,169,224,.28), transparent 60%),
+      radial-gradient(600px 400px at 0% 100%, rgba(79,209,240,.10), transparent 60%),
+      var(--navy-900);
+  }
+  .hero::before{
+    content:'';position:absolute;inset:0;pointer-events:none;
+    background-image:linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);
+    background-size:56px 56px;
+    -webkit-mask-image:linear-gradient(180deg,#000 0%,transparent 85%);mask-image:linear-gradient(180deg,#000 0%,transparent 85%);
+  }
+  .hero .wrap{position:relative;}
+  .hero h1{color:var(--white);font-size:clamp(2.5rem,4.6vw,3.9rem);font-weight:700;max-width:14ch;line-height:1.04;}
+  .hero p.lead{color:#B5C7D8;font-size:1.2rem;}
+  .hero-eyebrow{color:var(--cyan-400);background:rgba(79,209,240,.1);border:1px solid rgba(79,209,240,.25);}
+  .hero-eyebrow .dot{background:var(--cyan-400);box-shadow:0 0 0 4px rgba(79,209,240,.2);}
+  .hero .btn-ghost{color:var(--white);border-color:rgba(255,255,255,.28);}
+  .hero .btn-ghost:hover{color:var(--white);border-color:var(--cyan-400);background:rgba(255,255,255,.06);}
+  .hero-stats{gap:0;border-top:none;padding-top:0;margin-top:56px;}
+  .hero-stats div{padding:0 28px;border-left:1px solid rgba(255,255,255,.16);}
+  .hero-stats div:first-child{padding-left:0;border-left:none;}
+  .hero-stats div strong{color:var(--white);}
+  .hero-stats div span{color:#8FA5BA;}
+
+  .hero-art{
+    padding:34px 28px 26px;border-radius:28px;
+    background:linear-gradient(160deg,#F7FBFE 0%,#DCEBF6 100%);
+    box-shadow:var(--shadow-2),inset 0 0 0 1px rgba(255,255,255,.7);
+  }
+  .float-chip{background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.8);}
+  .float-chip.chip-1{left:-6%;}
+  .float-chip.chip-2{right:-5%;}
+
+  /* Seções */
+  .section-pad{padding:120px 0;}
+  .section-head{margin-bottom:60px;padding-left:22px;border-left:3px solid var(--cyan-500);}
+  .section-head h2,.about-copy h2,.contact-copy h2{font-size:clamp(2rem,3.4vw,2.9rem);}
+  .bg-ice{background:linear-gradient(180deg,var(--ice-50),#EAF2F9);}
+
+  .info-card{border-color:transparent;box-shadow:var(--shadow-1);padding:30px 26px;}
+  .info-card .ic{background:linear-gradient(135deg,rgba(23,169,224,.16),rgba(23,169,224,.05));border-radius:14px;}
+  .info-card:hover{box-shadow:0 22px 44px -16px rgba(7,27,51,.22);}
+
+  .services-grid{gap:20px;background:transparent;border:none;border-radius:0;overflow:visible;}
+  .service-cell{border-radius:var(--radius-md);padding:34px 28px;box-shadow:var(--shadow-1);transition:transform .25s var(--ease),box-shadow .25s var(--ease);position:relative;overflow:hidden;}
+  .service-cell::before{content:'';position:absolute;left:0;top:0;height:3px;width:100%;background:linear-gradient(90deg,var(--cyan-500),var(--cyan-400));transform:scaleX(.18);transform-origin:left;transition:transform .35s var(--ease);}
+  .service-cell:hover{background:var(--white);transform:translateY(-4px);box-shadow:0 22px 44px -16px rgba(7,27,51,.22);}
+  .service-cell:hover::before{transform:scaleX(1);}
+  .service-cell .num{display:inline-flex;width:36px;height:36px;border-radius:10px;align-items:center;justify-content:center;background:var(--ice-100);}
+
+  /* Rastreamento */
+  .tracking-section{padding:120px 0 130px;}
+  .track-form{background:rgba(255,255,255,.08);backdrop-filter:blur(10px);border-radius:999px;padding:8px 8px 8px 22px;}
+  .track-form .btn-primary{border-radius:999px;}
+  .track-result{border-radius:24px;padding:44px;}
+  @media (max-width:560px){.track-form{border-radius:22px;padding:8px;}.track-result{padding:28px 22px;}}
+
+  .adv-item{padding:28px 24px;border-radius:var(--radius-md);background:var(--ice-50);border:1px solid var(--line);}
+  .adv-item .line{width:28px;height:3px;border-radius:2px;}
+
+  .p-num{background:var(--cyan-500)!important;border-color:var(--cyan-500)!important;color:var(--white)!important;box-shadow:0 0 0 6px rgba(23,169,224,.15);}
+  .process-track::before{background:linear-gradient(90deg,var(--cyan-500),var(--line));}
+
+  /* Contato */
+  .contact-form{background:var(--white);padding:36px;border-radius:24px;box-shadow:var(--shadow-1);border:1px solid var(--line);}
+  .field input,.field textarea{background:var(--ice-50);border-color:transparent;padding:14px 16px;border-radius:12px;}
+  .field input:focus,.field textarea:focus{background:var(--white);border-color:var(--cyan-500);box-shadow:0 0 0 4px rgba(23,169,224,.14);}
+  .contact-copy .note{border-radius:0 14px 14px 0;}
+
+  footer.site{padding:72px 0 30px;}
+
+  @media (max-width:900px){
+    .hero{padding:126px 0 72px;}
+    .hero-stats{flex-direction:column;gap:16px;}
+    .hero-stats div,.hero-stats div:first-child{padding:0 0 0 16px;border-left:2px solid rgba(79,209,240,.4);}
+    .section-pad{padding:80px 0;}
+    .contact-form{padding:24px;}
+  }
+  /* ================================================ */
+
+  /* Hero art discreto */
+  .hero-art{background:rgba(255,255,255,.035);box-shadow:none;border:1px solid rgba(255,255,255,.1);padding:40px 28px;}
+  .hero-art svg{opacity:.9;}
+  .float-chip{animation:none;box-shadow:0 10px 24px -12px rgba(0,0,0,.4);}
+
+  /* Foto do caminhão */
+  .hero-art{padding:0;background:none;border:none;box-shadow:none;}
+  .hero-truck{width:100%;height:auto;border-radius:24px;border:1px solid rgba(255,255,255,.08);box-shadow:0 30px 60px -30px rgba(0,0,0,.6);}
+  .float-chip{display:none;}
 </style>
 </head>
 <body>
@@ -764,50 +878,7 @@
       <div class="hero-art">
         <div class="float-chip chip-1"><span class="chip-dot"></span>Nota fiscal em emissão</div>
         <div class="float-chip chip-2"><span class="chip-dot"></span>Origem: Vila Liviero, SP</div>
-        <svg viewBox="0 0 560 420" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="gTruck" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0" stop-color="#0A2A4D"/>
-              <stop offset="1" stop-color="#123A63"/>
-            </linearGradient>
-            <linearGradient id="gRoute" x1="0" y1="0" x2="1" y2="0">
-              <stop offset="0" stop-color="#17A9E0" stop-opacity="0"/>
-              <stop offset="1" stop-color="#17A9E0"/>
-            </linearGradient>
-          </defs>
-
-          <path d="M20 360 C 140 360, 160 300, 280 300 S 420 260, 540 260" stroke="url(#gRoute)" stroke-width="3" stroke-dasharray="2 12" stroke-linecap="round"/>
-          <circle cx="540" cy="260" r="6" fill="#17A9E0"/>
-          <circle cx="20" cy="360" r="5" fill="#0A2A4D"/>
-
-          <!-- container -->
-          <rect x="60" y="150" width="230" height="140" rx="10" fill="url(#gTruck)"/>
-          <rect x="76" y="166" width="198" height="108" rx="4" fill="none" stroke="#4FD1F0" stroke-width="1.5" opacity=".5"/>
-          <g stroke="#17A9E0" stroke-width="4" stroke-linecap="round">
-            <path d="M175 195 v54 M155 202 l40 40 M195 202 l-40 40"/>
-            <path d="M150 220 h50 M165 200 l0 40 l0 0"/>
-          </g>
-          <path d="M175 190 l7 12 h-14 z M175 254 l7 -12 h-14 z M148 222 l12 -7 v14 z M202 222 l-12 -7 v14 z" fill="#4FD1F0"/>
-
-          <!-- cab -->
-          <path d="M290 190 h60 c20 0 32 12 44 34 l20 36 v30 h-124 z" fill="url(#gTruck)"/>
-          <rect x="308" y="206" width="46" height="38" rx="6" fill="#EAF6FC"/>
-          <rect x="360" y="222" width="30" height="26" rx="5" fill="#0E3D68"/>
-
-          <!-- chassis -->
-          <rect x="60" y="290" width="354" height="14" rx="4" fill="#0A2A4D"/>
-          <circle cx="130" cy="322" r="26" fill="#0A2A4D"/>
-          <circle cx="130" cy="322" r="11" fill="#B9D6E8"/>
-          <circle cx="350" cy="322" r="26" fill="#0A2A4D"/>
-          <circle cx="350" cy="322" r="11" fill="#B9D6E8"/>
-
-          <!-- speed lines -->
-          <g stroke="#4FD1F0" stroke-width="4" stroke-linecap="round" opacity=".7">
-            <path d="M420 195 h60"/>
-            <path d="M425 215 h48"/>
-            <path d="M418 235 h34"/>
-          </g>
-        </svg>
+        <img class="hero-truck" src="assets/caminhao-flexlog.jpg" alt="Caminhão baú refrigerado da FlexLog" width="1120" height="840" fetchpriority="high">
       </div>
     </div>
   </section>
